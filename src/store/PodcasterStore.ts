@@ -3,7 +3,7 @@ import podcastsListReducer from '@/reducers/podcastsListSlice';
 
 const store = configureStore({
   reducer: {
-    podcastList: podcastsListReducer,
+    podcastsList: podcastsListReducer,
   },
   devTools: true,
 });

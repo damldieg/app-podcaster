@@ -5,8 +5,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export const podcastsListSlice = createSlice({
   name: 'podcastsList',
   initialState: {
-    podcastsList: [],
     podcastsListLoadState: 'idle' as RequestState,
+    podcastsList: [],
   },
   reducers: {
     addPodcastsList: (state, action: PayloadAction<PodcastList>) => {
