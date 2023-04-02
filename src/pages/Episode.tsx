@@ -1,12 +1,17 @@
-import { EpisodeList } from '@/components/EpisodesList';
+import { EpisodeCard } from '@/components/EpisodeCard';
 import { SideInfoCard } from '@/components/SideInfoCard';
 import { RootState } from '@/store/PodcasterStore';
 import { Box } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-const Podcast = () => {
+const Episode = () => {
   const { podcastDetailsLoadState, podcastDetails } = useSelector(
     (state: RootState) => state.podcastDetails,
+  );
+  const { episodeId } = useParams();
+  const episode = podcastDetails.episodes.filter(
+    (episode) => episodeId === episode.id,
   );
 
   return (
@@ -14,11 +19,11 @@ const Podcast = () => {
       {podcastDetailsLoadState === 'completed' && (
         <>
           <SideInfoCard podcastDetails={podcastDetails} />
-          <EpisodeList episodes={podcastDetails.episodes} />
+          <EpisodeCard episode={episode[0]} />
         </>
       )}
     </Box>
   );
 };
 
-export { Podcast };
+export { Episode };

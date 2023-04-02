@@ -20,8 +20,8 @@ export type PodcastDetails = PodcastInfo & {
 export type PodcastEpisode = {
   title: string;
   description: string;
-  date: Date;
-  duration: number;
+  date: string;
+  duration: string;
   track: string;
-  id: number;
+  id: string;
 };

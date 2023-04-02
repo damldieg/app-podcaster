@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Podcast } from './Podcast';
+import { Episode } from './Episode';
 
 export const Home = () => {
   const { filteredPodcastsList, podcastsListLoadState } = useSelector(
@@ -37,6 +38,10 @@ export const Home = () => {
           }
         />
         <Route path="/podcast/:podcastId" Component={Podcast} />
+        <Route
+          path="/podcast/:podcastId/episode/:episodeId"
+          Component={Episode}
+        />
       </Routes>
     </>
   );

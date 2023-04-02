@@ -6,8 +6,8 @@ export const podcastsListSlice = createSlice({
   name: 'podcastsList',
   initialState: {
     podcastsListLoadState: 'idle' as RequestState,
-    podcastsList: [],
-    filteredPodcastsList: [],
+    podcastsList: [] as PodcastList,
+    filteredPodcastsList: [] as PodcastList,
   },
   reducers: {
     addPodcastsList: (state, action: PayloadAction<PodcastList>) => {

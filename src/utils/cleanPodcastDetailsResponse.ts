@@ -14,14 +14,17 @@ export const cleanPodcastDetailsResponse = ({
   apiData,
   podcastInfo,
 }: Params): PodcastDetails => {
-  const episodes: PodcastEpisode[] = apiData.results.map((episode) => {
+  const episodes: PodcastEpisode[] = apiData.results.slice(1).map((episode) => {
     return {
       title: episode.trackName,
       description: episode.description,
-      date: new Date(episode.releaseDate),
-      duration: episode.trackTimeMillis,
+      date: new Date(episode.releaseDate).toLocaleDateString('en-GB'),
+      duration: new Date(episode.trackTimeMillis).toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
       track: episode.previewUrl,
-      id: episode.trackId,
+      id: episode.trackId.toString(),
     };
   });
 

@@ -6,7 +6,7 @@ export const podcastDetailsSlice = createSlice({
   name: 'podcastDetails',
   initialState: {
     podcastDetailsLoadState: 'idle' as RequestState,
-    podcastDetails: {},
+    podcastDetails: {} as PodcastDetails,
   },
   reducers: {
     addPodcastDetails: (state, action: PayloadAction<PodcastDetails>) => {

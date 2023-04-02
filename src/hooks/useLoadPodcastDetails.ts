@@ -12,7 +12,7 @@ export const useLoadPodcastDetails = () => {
   const dispatch = useDispatch();
 
   const getData = async (podcast: PodcastInfo) => {
-    const localStorageKey = 'podcastDetails' + podcast.id;
+    const localStorageKey = 'podcastDetails/id:' + podcast.id;
     const localStorageData = getLocalStorageData({ key: localStorageKey });
     if (localStorageData) {
       if (isDataOutdated(localStorageData.date)) {
