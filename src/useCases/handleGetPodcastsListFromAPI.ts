@@ -3,8 +3,8 @@ import {
   setPodcastsListLoadState,
 } from '@/reducers/podcastsListSlice';
 import { getPodcastsList } from '@/services/getPodcastsList';
-import { cleanPodcastsListResponse } from './cleanPodcastsListResponse';
-import { setLocalStorageData } from './handleLocalStorage';
+import { cleanPodcastsListResponse } from '../utils/cleanPodcastsListResponse';
+import { setLocalStorageData } from '../utils/handleLocalStorage';
 import { Dispatch } from 'react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { RequestState } from '@/types/RequestState';
@@ -16,7 +16,7 @@ interface Params {
   setLocalStorage: boolean;
 }
 
-export const getDataAndSetStoreFromAPI = async ({
+export const handleGetPodcastsListFromAPI = async ({
   dispatch,
   key,
   setLocalStorage,
@@ -25,7 +25,7 @@ export const getDataAndSetStoreFromAPI = async ({
   try {
     const data = await getPodcastsList();
     const cleanedData = cleanPodcastsListResponse(data);
-    dispatch(addPodcastsList(cleanedData));
+    dispatch(addPodcastsList(cleanedData as PodcastList));
     setLocalStorage && setLocalStorageData({ key, data: cleanedData });
   } catch (error) {
     console.log(error);

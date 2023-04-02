@@ -8,9 +8,16 @@ import { Route, Routes } from 'react-router-dom';
 import { Podcast } from './Podcast';
 
 export const Home = () => {
-  const { podcastsList, podcastsListLoadState } = useSelector(
+  const { filteredPodcastsList, podcastsListLoadState } = useSelector(
     (state: RootState) => state.podcastsList,
   );
+  const { podcastDetailsLoadState } = useSelector(
+    (state: RootState) => state.podcastDetails,
+  );
+  const isLoading = [podcastsListLoadState, podcastDetailsLoadState].some(
+    (value) => value === 'loading',
+  );
+
   const getData = useLoadInitialData();
 
   useEffect(() => {
@@ -19,13 +26,13 @@ export const Home = () => {
 
   return (
     <>
-      <Header isLoading={podcastsListLoadState === 'loading'} />
+      <Header isLoading={isLoading} />
       <Routes>
         <Route
           path="/"
           element={
             podcastsListLoadState === 'completed' ? (
-              <PodcastsList podcastsList={podcastsList} />
+              <PodcastsList podcastsList={filteredPodcastsList} />
             ) : null
           }
         />

@@ -150,7 +150,7 @@ export interface Status {
   content_length: number;
 }
 
-export interface PodcastDetails {
+export interface PodcastDetailsResponse {
   resultCount: number;
   results: Result[];
 }

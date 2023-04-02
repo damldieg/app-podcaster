@@ -1,3 +1,5 @@
+import { useLoadPodcastDetails } from '@/hooks/useLoadPodcastDetails';
+import { PodcastInfo } from '@/types/Podcaster.types';
 import {
   Card,
   CardBody,
@@ -11,19 +13,19 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type Props = {
-  title: string;
-  id: string;
-  author: string;
-  img: string;
+  podcast: PodcastInfo;
 };
 
 const StyledLink = styled(Link)`
   all: unset;
 `;
 
-const PodcastInfoCard: FC<Props> = ({ title, id, author, img }) => {
+const PodcastInfoCard: FC<Props> = ({ podcast }) => {
+  const { author, id, img, title } = podcast;
+  const getData = useLoadPodcastDetails();
+
   const handleClick = () => {
-    console.log('handleClick');
+    getData(podcast);
   };
 
   return (

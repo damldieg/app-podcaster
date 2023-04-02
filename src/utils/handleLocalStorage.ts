@@ -1,18 +1,22 @@
-import { LocalStoragePodcastList, PodcastList } from '@/types/Podcaster.types';
+import {
+  LocalStorageData,
+  PodcastDetails,
+  PodcastList,
+} from '@/types/Podcaster.types';
 
 interface GetLocalStorageDataParams {
   key: string;
 }
 
 interface SetLocalStorageDataParams extends GetLocalStorageDataParams {
-  data: PodcastList;
+  data: PodcastList | PodcastDetails;
 }
 
 export const getLocalStorageData = ({
   key,
-}: GetLocalStorageDataParams): LocalStoragePodcastList => {
+}: GetLocalStorageDataParams): LocalStorageData => {
   const data = localStorage.getItem(key);
-  const parsedData = JSON.parse(data) as LocalStoragePodcastList;
+  const parsedData = JSON.parse(data) as LocalStorageData;
   return parsedData;
 };
 
@@ -21,7 +25,7 @@ export const setLocalStorageData = ({
   data,
 }: SetLocalStorageDataParams) => {
   const requestDate = new Date();
-  const localStorageData: LocalStoragePodcastList = {
+  const localStorageData: LocalStorageData = {
     date: requestDate,
     info: data,
   };
