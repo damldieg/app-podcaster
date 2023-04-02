@@ -6,3 +6,8 @@ export type PodcastInfo = {
 };
 
 export type PodcastList = PodcastInfo[];
+
+export type LocalStoragePodcastList = {
+  date: Date;
+  info: PodcastList;
+};
