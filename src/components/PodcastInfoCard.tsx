@@ -1,24 +1,21 @@
 import { useLoadPodcastDetails } from '@/hooks/useLoadPodcastDetails';
 import { PodcastInfo } from '@/types/Podcaster.types';
 import {
+  Box,
   Card,
   CardBody,
   CardHeader,
   Heading,
   Image,
+  Link,
   Text,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 
 type Props = {
   podcast: PodcastInfo;
 };
-
-const StyledLink = styled(Link)`
-  all: unset;
-`;
 
 const PodcastInfoCard: FC<Props> = ({ podcast }) => {
   const { author, id, img, title } = podcast;
@@ -30,6 +27,7 @@ const PodcastInfoCard: FC<Props> = ({ podcast }) => {
 
   return (
     <Card
+      variant={'outline'}
       width={'20%'}
       marginBottom={'36'}
       display={'flex'}
@@ -39,13 +37,21 @@ const PodcastInfoCard: FC<Props> = ({ podcast }) => {
       boxShadow={'lg'}
       _hover={{
         cursor: 'pointer',
+        boxShadow: '2xl',
       }}
     >
-      <StyledLink to={`/podcast/${id}`} onClick={handleClick}>
+      <Link
+        as={RouterLink}
+        to={`/podcast/${id}`}
+        onClick={handleClick}
+        _hover={{
+          textDecoration: 'none',
+        }}
+      >
         <CardHeader>
           <Image
             position={'absolute'}
-            top={'-24'}
+            top={'-20'}
             right={'0'}
             left={'0'}
             margin={'auto'}
@@ -56,12 +62,14 @@ const PodcastInfoCard: FC<Props> = ({ podcast }) => {
           />
         </CardHeader>
         <CardBody textAlign={'center'} paddingTop={'8'}>
-          <Heading size={'md'}>{title}</Heading>
-          <Text marginTop={'4'} color={'gray.500'} fontSize={'lg'}>
-            Author: {author}
-          </Text>
+          <Box textAlign={'center'} paddingTop={'8'}>
+            <Heading size={'md'}>{title}</Heading>
+            <Text marginTop={'4'} color={'gray.500'} fontSize={'lg'}>
+              Author: {author}
+            </Text>
+          </Box>
         </CardBody>
-      </StyledLink>
+      </Link>
     </Card>
   );
 };

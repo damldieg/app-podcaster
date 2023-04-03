@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Podcast } from './Podcast';
 import { Episode } from './Episode';
+import { Loading } from '@/components/Loading';
 
 export const Home = () => {
   const { filteredPodcastsList, podcastsListLoadState } = useSelector(
@@ -32,9 +33,11 @@ export const Home = () => {
         <Route
           path="/"
           element={
-            podcastsListLoadState === 'completed' ? (
+            podcastsListLoadState === 'loading' ? (
+              <Loading />
+            ) : (
               <PodcastsList podcastsList={filteredPodcastsList} />
-            ) : null
+            )
           }
         />
         <Route path="/podcast/:podcastId" Component={Podcast} />

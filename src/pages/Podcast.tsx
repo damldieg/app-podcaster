@@ -1,4 +1,5 @@
 import { EpisodeList } from '@/components/EpisodesList';
+import { Loading } from '@/components/Loading';
 import { SideInfoCard } from '@/components/SideInfoCard';
 import { RootState } from '@/store/PodcasterStore';
 import { Box } from '@chakra-ui/react';
@@ -11,7 +12,9 @@ const Podcast = () => {
 
   return (
     <Box padding={'4'} display={'flex'} gap={'20'}>
-      {podcastDetailsLoadState === 'completed' && (
+      {podcastDetailsLoadState === 'loading' ? (
+        <Loading />
+      ) : (
         <>
           <SideInfoCard podcastDetails={podcastDetails} />
           <EpisodeList episodes={podcastDetails.episodes} />

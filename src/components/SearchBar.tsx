@@ -18,14 +18,23 @@ const SearchBar: FC<{ listLength: number }> = ({ listLength }) => {
       padding={'8'}
       justifyContent={'flex-end'}
     >
-      <Badge color={'white'} backgroundColor={'blue.400'}>
+      <Badge
+        color={'white'}
+        backgroundColor={'blue.400'}
+        width={'12'}
+        height={'6'}
+        textAlign={'center'}
+        alignItems={'center'}
+        rounded={'md'}
+        fontSize={'md'}
+      >
         {listLength}
       </Badge>
       <Input
         type="search"
         onChange={(e) => handleOnChange(e.target.value)}
         placeholder="Filter podcasts..."
-        size={'sm'}
+        size={'md'}
         width={'72'}
       />
     </Box>

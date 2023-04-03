@@ -2,6 +2,7 @@ import { PodcastEpisode } from '@/types/Podcaster.types';
 import {
   Box,
   Card,
+  Link,
   Table,
   Tbody,
   Td,
@@ -11,18 +12,29 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 const EpisodeList: FC<{ episodes: PodcastEpisode[] }> = ({ episodes }) => {
   const { podcastId } = useParams();
   return (
-    <Box width={'75%'} margin={'auto'}>
-      <Card padding={'4'} boxShadow={'lg'} marginBottom={'12'}>
+    <Box width={'75%'} marginTop={'20'}>
+      <Card
+        padding={'4'}
+        boxShadow={'lg'}
+        marginBottom={'12'}
+        variant={'outline'}
+      >
         <Text fontWeight={'semibold'} fontSize={'2xl'}>
           Episodes: {episodes.length}
         </Text>
       </Card>
-      <Card padding={'4'} boxShadow={'lg'} overflowY={'auto'} maxHeight={'2xl'}>
+      <Card
+        padding={'4'}
+        boxShadow={'lg'}
+        overflowY={'auto'}
+        maxHeight={'2xl'}
+        variant={'outline'}
+      >
         <Table variant={'striped'}>
           <Thead>
             <Tr>
@@ -36,7 +48,11 @@ const EpisodeList: FC<{ episodes: PodcastEpisode[] }> = ({ episodes }) => {
               episodes.map((episode) => (
                 <Tr key={episode.id}>
                   <Td>
-                    <Link to={`/podcast/${podcastId}/episode/${episode.id}`}>
+                    <Link
+                      as={RouterLink}
+                      color={'blue.500'}
+                      to={`/podcast/${podcastId}/episode/${episode.id}`}
+                    >
                       {episode.title}
                     </Link>
                   </Td>
