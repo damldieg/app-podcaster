@@ -1,12 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import podcastsListReducer from '@/reducers/podcastsListSlice';
 import podcastDetailsReducer from '@/reducers/podcastDetailsSlice';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const store = configureStore({
-  reducer: {
-    podcastsList: podcastsListReducer,
-    podcastDetails: podcastDetailsReducer,
-  },
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const rootReducer = combineReducers({
+  podcastsList: podcastsListReducer,
+  podcastDetails: podcastDetailsReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
   devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -16,4 +27,4 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 
-export default store;
+export const persistor = persistStore(store);
