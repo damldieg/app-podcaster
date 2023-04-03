@@ -1,4 +1,4 @@
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 import { PodcastInfoCard } from './PodcastInfoCard';
 import { SearchBar } from './SearchBar';
@@ -31,12 +31,6 @@ const PodcastsList: FC<{ podcastsList: PodcastList }> = ({ podcastsList }) => (
           gap={'4'}
           textAlign={'center'}
         >
-          <Image
-            width={'28'}
-            margin={'auto'}
-            src="../../public/assets/no-results.png"
-            alt={'No results icon'}
-          />
           <Text fontWeight={'bold'} fontSize={'2xl'}>
             Not podcasts found
           </Text>

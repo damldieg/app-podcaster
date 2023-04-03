@@ -11,7 +11,7 @@ const Podcast = () => {
   );
 
   return (
-    <Box padding={'4'} display={'flex'} gap={'20'}>
+    <Box padding={'4'} display={'flex'} gap={'20'} justifyContent={'center'}>
       {podcastDetailsLoadState === 'loading' ? (
         <Loading />
       ) : (
