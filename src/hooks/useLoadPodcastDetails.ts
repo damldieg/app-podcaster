@@ -8,7 +8,9 @@ import { getLocalStorageData } from '@/utils/handleLocalStorage';
 import { isDataOutdated } from '@/utils/isDataOutdated';
 import { useDispatch } from 'react-redux';
 
-export const useLoadPodcastDetails = () => {
+type Output = { getData: (podcast: PodcastInfo) => void };
+
+export const useLoadPodcastDetails = (): Output => {
   const dispatch = useDispatch();
 
   const getData = async (podcast: PodcastInfo) => {
@@ -37,5 +39,5 @@ export const useLoadPodcastDetails = () => {
     }
   };
 
-  return getData;
+  return { getData };
 };

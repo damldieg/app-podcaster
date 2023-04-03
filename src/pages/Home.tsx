@@ -20,7 +20,7 @@ export const Home = () => {
     (value) => value === 'loading',
   );
 
-  const getData = useLoadInitialData();
+  const { getData } = useLoadInitialData();
 
   useEffect(() => {
     getData();

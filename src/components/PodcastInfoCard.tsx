@@ -19,7 +19,7 @@ type Props = {
 
 const PodcastInfoCard: FC<Props> = ({ podcast }) => {
   const { author, id, img, title } = podcast;
-  const getData = useLoadPodcastDetails();
+  const { getData } = useLoadPodcastDetails();
 
   const handleClick = () => {
     getData(podcast);

@@ -10,7 +10,9 @@ import { useDispatch } from 'react-redux';
 
 const localStorageKey = 'podcastsList';
 
-export const useLoadInitialData = () => {
+type Output = { getData: () => void };
+
+export const useLoadInitialData = (): Output => {
   const dispatch = useDispatch();
   const localStorageData = getLocalStorageData({ key: localStorageKey });
 
@@ -36,5 +38,5 @@ export const useLoadInitialData = () => {
     }
   };
 
-  return getData;
+  return { getData };
 };

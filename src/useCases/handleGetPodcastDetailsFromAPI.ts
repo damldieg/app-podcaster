@@ -5,7 +5,6 @@ import {
 import { getPodcastDetails } from '@/services/getPodcastDetails';
 import { PodcastDetails, PodcastInfo } from '@/types/Podcaster.types';
 import { RequestState } from '@/types/RequestState';
-import { cleanPodcastDetailsResponse } from '@/utils/cleanPodcastDetailsResponse';
 import { setLocalStorageData } from '@/utils/handleLocalStorage';
 import { Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
@@ -25,12 +24,12 @@ export const handleGetPodcastDetailsFromAPI = async ({
   dispatch(setPodcastDetailsLoadState('loading'));
   try {
     const data = await getPodcastDetails(podcast.id);
-    const cleanedData = cleanPodcastDetailsResponse({
-      apiData: data,
-      podcastInfo: podcast,
-    });
-    dispatch(addPodcastDetails(cleanedData));
-    setLocalStorage && setLocalStorageData({ key, data: cleanedData });
+    const podcastDetails: PodcastDetails = {
+      ...podcast,
+      episodes: data,
+    };
+    dispatch(addPodcastDetails(podcastDetails));
+    setLocalStorage && setLocalStorageData({ key, data: podcastDetails });
   } catch (error) {
     console.log(error);
   } finally {

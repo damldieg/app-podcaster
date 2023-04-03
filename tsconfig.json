@@ -13,10 +13,10 @@
     "sourceMap": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "paths": {
       "@/*": ["src/*"]
-    },
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

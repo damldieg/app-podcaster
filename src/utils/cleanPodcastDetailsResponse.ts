@@ -1,9 +1,5 @@
 import { PodcastDetailsResponse } from '@/types/APIResponse.types';
-import {
-  PodcastDetails,
-  PodcastEpisode,
-  PodcastInfo,
-} from '@/types/Podcaster.types';
+import { PodcastEpisode, PodcastInfo } from '@/types/Podcaster.types';
 
 interface Params {
   apiData: PodcastDetailsResponse;
@@ -12,8 +8,7 @@ interface Params {
 
 export const cleanPodcastDetailsResponse = ({
   apiData,
-  podcastInfo,
-}: Params): PodcastDetails => {
+}: Params): PodcastEpisode[] => {
   const episodes: PodcastEpisode[] = apiData.results.slice(1).map((episode) => {
     return {
       title: episode.trackName,
@@ -28,8 +23,5 @@ export const cleanPodcastDetailsResponse = ({
     };
   });
 
-  return {
-    ...podcastInfo,
-    episodes,
-  };
+  return episodes;
 };
