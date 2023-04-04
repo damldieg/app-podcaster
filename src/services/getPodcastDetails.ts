@@ -12,6 +12,8 @@ export const getPodcastDetails = async (
     `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast%20&entity=podcastEpisode&limit=20`,
   )}`;
   const { data } = await axios.get<AllOriginResponse>(path);
-  const cleanedData = cleanPodcastDetailsResponse(JSON.parse(data.contents));
+  const cleanedData = cleanPodcastDetailsResponse({
+    apiData: JSON.parse(data.contents),
+  });
   return cleanedData;
 };
